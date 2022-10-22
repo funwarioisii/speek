@@ -1,0 +1,9 @@
+module Speek
+  module Parser
+    def table_name: () -> string
+
+    def id_type: () -> Class
+
+    def columns: () -> (ColumnData | Array[ColumnData])
+  end
+end

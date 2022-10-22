@@ -1,0 +1,13 @@
+class Speek
+  module Export
+    module Rbs
+      def to_rbs: () -> ::String
+
+      private
+
+      def class_name: () -> string
+
+      def generate_attr_accessor: (ColumnData column_data) -> string
+    end
+  end
+end

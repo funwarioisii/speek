@@ -1,0 +1,42 @@
+class ColumnData < Struct[untyped]
+  attr_accessor name: string
+  attr_accessor type: string
+  attr_accessor nullable: bool
+  attr_accessor option: Hash[string, string]
+end
+
+class SchemaData < Struct[untyped]
+  attr_accessor table_name: string
+  attr_accessor id_type: Symbol
+  attr_accessor columns: Array[ColumnData]
+
+  def initialize: (table_name: string, id_type: Symbol, columns: Array[ColumnData]) -> void
+end
+
+# parse code and generate schema by included modules
+class Speek
+  attr_reader code: untyped
+
+  attr_reader ast: untyped
+
+  class Error < StandardError
+  end
+
+  def initialize: (string code) -> Speek
+
+  def self.read: (string filename) -> Speek
+
+  def self.example: () -> Speek
+
+  def table_name: () -> string
+
+  def id_type: () -> string
+
+  def columns: () -> Array[ColumnData]
+
+  def schema_data: () -> SchemaData
+
+  private
+
+  def extract_column: (untyped column_ast_node) -> (ColumnData | Array[ColumnData])
+end

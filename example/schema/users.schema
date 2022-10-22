@@ -1,0 +1,9 @@
+create_table "users", id: :bigint, unsigned: true, force: :cascade, options: "ENGINE=InnoDB" do |t|
+  t.string "name", null: false
+  t.text "desc", null: true
+  t.datetime "deleted_at"
+  t.integer "weight", null: false, default: 0, unsigned: true
+  t.boolean "is_banned", null: false, default: false
+
+  t.timestamps
+end
