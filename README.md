@@ -2,46 +2,45 @@
 
 Speek is a type generator using schemafiles for Rails.
 
+Speek supports rbs and GraphQL.
+
+For example
+
+
 ```ruby.rbs
-$ bundle exec 
+# cat example/schema/users.schema 
+create_table "users", id: :bigint, unsigned: true, force: :cascade, options: "ENGINE=InnoDB" do |t|
+  t.string "name", null: false
+  t.text "desc", null: true
+  t.datetime "deleted_at"
+  t.integer "weight", null: false, default: 0, unsigned: true
+  t.boolean "is_banned", null: false, default: false
+
+  t.timestamps
+end
+
+# speek -i example/schema/users.schema -s rbs
+class User
+  attr_accessor id: Integer
+  attr_accessor name: String
+  attr_accessor desc: (String | nil)
+  attr_accessor deleted_at: (Time | nil)
+  attr_accessor weight: Integer
+  attr_accessor is_banned: Boolean
+  attr_accessor created_at: Time
+  attr_accessor updated_at: Time
+end
 ```
 
-Speek support rbs and will support GraphQL. 
+日本語の紹介記事はこちら： https://gist.github.com/funwarioisii/2a9fa5f3f782c3752612887ccbd7c5fc
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'speek'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
 
     $ gem install speek
 
 ## Usage
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/speek. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/speek/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Speek project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/speek/blob/master/CODE_OF_CONDUCT.md).
