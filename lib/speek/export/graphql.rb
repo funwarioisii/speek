@@ -22,7 +22,7 @@ module Speek
 
       def generate_field(column_data)
         type = convert_type(column_data.type)
-        type = "#{column_data.type}!" unless column_data.nullable
+        type = "#{type}!" unless column_data.nullable
         "#{column_data.name.camelize(:lower)}: #{type}"
       end
 
