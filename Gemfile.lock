@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    speek (0.1.0)
+    speek (0.1.1)
       thor
 
 GEM
